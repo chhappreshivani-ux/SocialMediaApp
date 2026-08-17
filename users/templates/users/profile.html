@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Profile</title>
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #f5f7ff, #eef2ff);
+            color: #222;
+        }
+
+        .profile-box {
+            width: 90%;
+            max-width: 800px;
+            margin: 35px auto;
+        }
+
+        .profile-card {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+
+        .profile-card h1 {
+            margin-bottom: 8px;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            margin: 25px 0;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat strong {
+            display: block;
+            font-size: 22px;
+        }
+
+        .section-card {
+            background: white;
+            padding: 22px;
+            margin-top: 20px;
+            border-radius: 16px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.07);
+        }
+
+        .post-card {
+            background: #f7f8fc;
+            padding: 15px;
+            margin-top: 15px;
+            border-radius: 12px;
+        }
+
+        .post-card img {
+            width: 100%;
+            max-width: 400px;
+            border-radius: 12px;
+        }
+
+        .profile-btn {
+            display: inline-block;
+            padding: 10px 18px;
+            background: #6c5ce7;
+            color: white;
+            border-radius: 8px;
+            text-decoration: none;
+        }
+
+        .navigation {
+            text-align: center;
+            margin: 30px 0;
+        }
+
+        .navigation a {
+            margin: 8px;
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+
+<nav class="navbar">
+
+    <div class="logo">
+        📱 SocialApp
+    </div>
+
+    <div>
+        <a href="/home/">🏠 Home</a>
+        <a href="/posts/">📝 Posts</a>
+        <a href="/create-post/">➕ Create</a>
+        <a href="/users/">🔍 Users</a>
+        <a href="/profile/">👤 Profile</a>
+        <a href="/logout/">🚪 Logout</a>
+    </div>
+
+</nav>
+
+
+<div class="profile-box">
+
+    <!-- PROFILE CARD -->
+
+   <div class="profile-card">
+
+    <div class="cover"></div>
+
+    <div class="avatar">
+        👤
+    </div>
+
+    <h1>{{ request.user.username }}</h1>
+
+    <p class="email">{{ request.user.email }}</p>
+
+    <div class="profile-stats">
+
+        <div class="stat-card">
+            <span>👥</span>
+            <strong>{{ followers_count }}</strong>
+            <small>Followers</small>
+        </div>
+
+        <div class="stat-card">
+            <span>🤝</span>
+            <strong>{{ following_count }}</strong>
+            <small>Following</small>
+        </div>
+
+    </div>
+
+    <a href="/edit-profile/" class="edit-btn">
+        ✏️ Edit Profile
+    </a>
+
+</div>
+
+    <!-- FOLLOWERS -->
+
+    <div class="section-card">
+
+        <h2>👥 Followers</h2>
+
+        {% for follow in followers %}
+
+            <p>👤 {{ follow.follower.username }}</p>
+
+        {% empty %}
+
+            <p>No followers yet.</p>
+
+        {% endfor %}
+
+    </div>
+
+
+    <!-- FOLLOWING -->
+
+    <div class="section-card">
+
+        <h2>🤝 Following</h2>
+
+        {% for follow in following %}
+
+            <p>👤 {{ follow.following.username }}</p>
+
+        {% empty %}
+
+            <p>Not following anyone yet.</p>
+
+        {% endfor %}
+
+    </div>
+
+
+    <!-- MY POSTS -->
+
+    <div class="section-card">
+
+        <h2>📝 My Posts</h2>
+
+        {% for post in posts %}
+
+            <div class="post-card">
+
+                <img src="{{ post.image.url }}">
+
+                <p>{{ post.caption }}</p>
+
+                <small>{{ post.created_at }}</small>
+
+            </div>
+
+        {% empty %}
+
+            <h3>No Posts Yet</h3>
+
+        {% endfor %}
+
+    </div>
+
+
+    <!-- NAVIGATION -->
+
+    <div class="navigation">
+
+        <a href="/users/">🔍 Find Users</a>
+
+        <a href="/posts/">📝 All Posts</a>
+
+        <a href="/home/">🏠 Home</a>
+
+    </div>
+
+</div>
+
+</body>
+</html>

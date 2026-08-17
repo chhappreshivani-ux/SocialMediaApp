@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Find Users</title>
+{% load static %}
+<link rel="stylesheet" href="{% static 'style.css' %}">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f5f5;
+            margin: 0;
+            padding: 40px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: auto;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .user-card {
+            background: white;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 10px;
+        }
+
+        .user-card a {
+            display: inline-block;
+            padding: 8px 15px;
+            background: #333;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        .navigation {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .navigation a {
+            text-decoration: none;
+            margin: 10px;
+        }
+    </style>
+</head>
+
+<body>
+<nav class="navbar">
+
+    <div class="logo">
+        📱 SocialApp
+    </div>
+
+    <div>
+        <a href="/home/">🏠 Home</a>
+        <a href="/posts/">📝 Posts</a>
+        <a href="/create-post/">➕ Create</a>
+        <a href="/users/">🔍 Users</a>
+        <a href="/profile/">👤 Profile</a>
+        <a href="/logout/">🚪 Logout</a>
+    </div>
+
+</nav>
+<div class="container">
+
+    <h1>🔍 Find Users</h1>
+<form method="GET">
+    <input
+        type="text"
+        name="search"
+        value="{{ search }}"
+        placeholder="Search username..."
+    >
+
+    <button type="submit">🔍 Search</button>
+</form>
+    {% for user in users %}
+
+        <div class="user-card">
+
+            <h3>👤 {{ user.username }}</h3>
+
+            <p>{{ user.email }}</p>
+
+            {% if user.id in following_ids %}
+
+                <a href="/unfollow/{{ user.id }}/">
+                    ❌ Unfollow
+                </a>
+
+            {% else %}
+
+                <a href="/follow/{{ user.id }}/">
+                    ➕ Follow
+                </a>
+
+            {% endif %}
+
+        </div>
+
+    {% empty %}
+
+        <div class="user-card">
+            <h3>No Other Users Found</h3>
+        </div>
+
+    {% endfor %}
+
+    <div class="navigation">
+
+        <a href="/profile/">👤 Profile</a>
+
+        <a href="/posts/">📝 Posts</a>
+
+        <a href="/home/">🏠 Home</a>
+
+    </div>
+
+</div>
+
+</body>
+</html>

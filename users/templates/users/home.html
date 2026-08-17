@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Home</title>
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'style.css' %}">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f5f5f5;
+            margin-top: 60px;
+        }
+
+        .container {
+            background: white;
+            width: 400px;
+            margin: auto;
+            padding: 30px;
+            border-radius: 12px;
+        }
+
+        h1 {
+            margin-bottom: 10px;
+        }
+
+        a {
+            display: block;
+            margin: 15px;
+            padding: 12px;
+            text-decoration: none;
+            background-color: #333;
+            color: white;
+            border-radius: 6px;
+        }
+
+        a:hover {
+            background-color: #555;
+        }
+    </style>
+</head>
+
+<body>
+<nav class="navbar">
+    <div class="logo">📱 SocialApp</div>
+
+    <div>
+        <a href="/home/">🏠 Home</a>
+        <a href="/posts/">📝 Posts</a>
+        <a href="/create-post/">➕ Create</a>
+        <a href="/users/">🔍 Users</a>
+        <a href="/profile/">👤 Profile</a>
+        <a href="/logout/">🚪 Logout</a>
+    </div>
+</nav>
+<div class="container">
+
+    <h1>Welcome to Social Media Platform</h1>
+
+    <h3>Hello {{ request.user.username }} 👋</h3>
+
+    <hr>
+
+    <a href="/posts/">📝 All Posts</a>
+
+    <a href="/create-post/">➕ Create Post</a>
+
+    <a href="/profile/">👤 My Profile</a>
+
+    <a href="/users/">🔍 Find Users</a>
+
+    <a href="/logout/">🚪 Logout</a>
+
+</div>
+
+</body>
+</html>
