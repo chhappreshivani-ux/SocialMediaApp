@@ -1,0 +1,76 @@
+.profile-card {
+    background: white;
+    border-radius: 22px;
+    overflow: hidden;
+    text-align: center;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.10);
+    margin-bottom: 25px;
+}
+
+.cover {
+    height: 150px;
+    background: linear-gradient(135deg, #6c5ce7, #a29bfe, #74b9ff);
+}
+
+.avatar {
+    width: 90px;
+    height: 90px;
+    background: white;
+    border-radius: 50%;
+    margin: -45px auto 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 42px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+}
+
+.profile-card h1 {
+    margin: 5px 0;
+}
+
+.email {
+    color: #777;
+}
+
+.profile-stats {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin: 25px;
+}
+
+.stat-card {
+    width: 130px;
+    padding: 15px;
+    background: #f6f7ff;
+    border-radius: 15px;
+}
+
+.stat-card span {
+    font-size: 22px;
+}
+
+.stat-card strong {
+    display: block;
+    font-size: 22px;
+    margin: 5px;
+}
+
+.stat-card small {
+    color: #777;
+}
+
+.edit-btn {
+    display: inline-block;
+    margin-bottom: 25px;
+    padding: 11px 22px;
+    background: #6c5ce7;
+    color: white;
+    text-decoration: none;
+    border-radius: 10px;
+}
+
+.edit-btn:hover {
+    opacity: 0.85;
+}
